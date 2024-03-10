@@ -4,8 +4,31 @@ import json
 import time
 
 def on_message(ws, message):
-    print("Received message:", message)
+    decoded_message = json.loads(message)
+
+    # Extract bids
+    bids = decoded_message.get("b", [])
+
+    # Print A (price) and B (quantity) for each bid entry
+    # for bid_entry in bids:
+    #     price, quantity = bid_entry
+    #     print("Buy Order Price", price,"\n", "Buy order Quantity", quantity)
+        
+    # # Extract asks
+    asks = decoded_message.get("a", [])
     
+    # # Print A (price) and B (quantity) for each ask entry
+    # for ask_entry in asks:
+    #     price, quantity = ask_entry
+    #     print("Sell Order Price", price,"\n", "Sell order Quantity", quantity)
+        
+    last_five_bids = bids[:5]
+    last_five_asks = asks[:5]
+    
+    print("Last five buy orders", last_five_bids)
+    print("Last five sell orders", last_five_asks)
+
+        
 def on_error(ws, error):
     print("Error:", error)
 
@@ -17,7 +40,7 @@ def on_open(ws):
     print("Connection opened")
 
 def get_data_with_websocket():
-    websocket.enableTrace(True)
+    # websocket.enableTrace(True)
     ws = websocket.WebSocketApp("wss://stream.binance.com:9443/ws/btcusdt@depth",  
                                 on_message=on_message,
                                 on_error=on_error,

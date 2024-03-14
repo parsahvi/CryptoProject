@@ -67,10 +67,3 @@ thread = threading.Thread(target=check_and_reconnect)
 thread.start()
 
 get_data_with_websocket()
-
-
-
-
-
-
-

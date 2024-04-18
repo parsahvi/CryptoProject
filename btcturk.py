@@ -2,6 +2,7 @@ import json
 import threading
 import time
 import websocket
+import Composition
 try:
     import thread
 except ImportError:
@@ -31,11 +32,11 @@ class WebSocketManager:
         last_five_bids = bids[:5]
         last_five_asks = asks[:5]
         
-        print("Last five buy orders", last_five_bids)
-        print("Last five sell orders", last_five_asks)
-
-
-
+        # print("Last five buy orders", last_five_bids)
+        # print("Last five sell orders", last_five_asks)
+        data=[{'ask':last_five_asks,'bids':last_five_bids ,'name':'btc'}]
+        # print(data)
+        Composition.test(data)
     def on_error(self, ws, error):
         print(error)
 

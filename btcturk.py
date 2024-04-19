@@ -34,9 +34,8 @@ class WebSocketManager:
         
         # print("Last five buy orders", last_five_bids)
         # print("Last five sell orders", last_five_asks)
-        data=[{'ask':last_five_asks,'bids':last_five_bids ,'name':'btc'}]
-        # print(data)
-        Composition.test(data)
+        data=[{'ask':last_five_asks,'bids':last_five_bids ,'name':'btcturk'}]
+        Composition.dataGetter(data)
     def on_error(self, ws, error):
         print(error)
 

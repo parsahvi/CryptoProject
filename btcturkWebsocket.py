@@ -9,10 +9,9 @@ except ImportError:
     import _thread as thread
 
 class WebSocketManager:
-    def __init__(self, url):
-        self.url = url
+    def __init__(self):
+        self.url = "wss://ws-feed-pro.btcturk.com/"
         self.ws = websocket.WebSocketApp(
-            url,
             on_message=self.on_message,
             on_error=self.on_error,
             on_close=self.on_close)
@@ -63,4 +62,4 @@ class WebSocketManager:
         timer.start()
 
 if __name__ == "__main__":
-    ws_manager = WebSocketManager("wss://ws-feed-pro.btcturk.com/")
+    ws_manager = WebSocketManager()

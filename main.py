@@ -1,4 +1,5 @@
 from binanceWebsocket import BinanceWebsocket
+from btcturkWebsocket import WebSocketManager
 
 avalable_pairs = ["btcusdt"]
 
@@ -19,7 +20,12 @@ broker = int(input())
 broker = avalable_brokers[broker-1]
 
 switcher = {
-    "binance": BinanceWebsocket
-    
+    "binance": BinanceWebsocket,
+    "btcturk": WebSocketManager
 }
- 
+
+# Get the class from the switcher dictionary
+BrokerClass = switcher.get(broker)
+
+# Create an instance of the class
+ws = BrokerClass()

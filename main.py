@@ -24,6 +24,10 @@ switcher = {
     "btcturk": WebSocketManager
 }
 
+
+def dataShow(data):
+    print(data)
+
 # Get the class from the switcher dictionary
 BrokerClass = switcher.get(broker)
 

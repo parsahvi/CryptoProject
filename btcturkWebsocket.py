@@ -3,15 +3,18 @@ import threading
 import time
 import websocket
 import Composition
+from datetime import datetime
+
 try:
     import thread
 except ImportError:
     import _thread as thread
 
 class WebSocketManager:
-    def __init__(self):
-        self.url = "wss://ws-feed-pro.btcturk.com/"
+    def __init__(self, url):
+        self.url = url
         self.ws = websocket.WebSocketApp(
+            url,
             on_message=self.on_message,
             on_error=self.on_error,
             on_close=self.on_close)
@@ -31,10 +34,11 @@ class WebSocketManager:
         last_five_bids = bids[:5]
         last_five_asks = asks[:5]
         
-        # print("Last five buy orders", last_five_bids)
-        # print("Last five sell orders", last_five_asks)
-        data=[{'ask':last_five_asks,'bids':last_five_bids ,'name':'btcturk'}]
-        Composition.dataGetter(data)
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        data=[{'ask':last_five_asks,'bids':last_five_bids ,'name':'btcturk','time':current_time}]
+        Composition.dataGetter(data)   
+
     def on_error(self, ws, error):
         print(error)
 
@@ -62,4 +66,4 @@ class WebSocketManager:
         timer.start()
 
 if __name__ == "__main__":
-    ws_manager = WebSocketManager()
+    ws_manager = WebSocketManager("wss://ws-feed-pro.btcturk.com/")

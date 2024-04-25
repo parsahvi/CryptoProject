@@ -1,5 +1,7 @@
 import websocket
 import json
+import Composition
+from datetime import datetime
 class WebSocketManager:
     def __init__(self, url):
         self.url=url
@@ -20,9 +22,11 @@ class WebSocketManager:
         # last five data
         last_five_bids = bids[:5]
         last_five_asks = asks[:5]
-        print("Last five buy orders", last_five_bids)
-        print("Last five sell orders", last_five_asks)
-    
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        data=[{'ask':last_five_asks,'bids':last_five_bids ,'name':'binance','time':current_time}]
+        Composition.dataGetter(data)
+
     
     def on_error(self, ws, error):
         print(error)

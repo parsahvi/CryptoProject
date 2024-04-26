@@ -53,7 +53,8 @@
 import websocket
 import json
 import time
-
+import Composition
+from datetime import datetime
 class BinanceWebsocket:
     def __init__(self):
         self.ws = websocket.WebSocketApp("wss://stream.binance.com:9443/ws/btcusdt@depth",  
@@ -75,10 +76,10 @@ class BinanceWebsocket:
         last_five_bids = bids[:5]
         last_five_asks = asks[:5]
         
-        #     now = datetime.now()
-        # current_time = now.strftime("%H:%M:%S")
-        # data=[{'ask':last_five_asks,'bids':last_five_bids ,'name':'binance','time':current_time}]
-        # Composition.dataGetter(data)
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        data=[{'ask':last_five_asks,'bids':last_five_bids ,'name':'binance','time':current_time}]
+        Composition.dataGetter(data)
         
         print("Last five buy orders", last_five_bids)
         print("Last five sell orders", last_five_asks)

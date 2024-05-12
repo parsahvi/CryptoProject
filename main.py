@@ -35,10 +35,10 @@
 # ws = BrokerClass()
 
 from binanceWebsocket import BinanceWebsocket
-from btcturkWebsocket import WebSocketManager
-
+import btcturkWebsocket
 avalable_pairs = ["btcusdt"]
 avalable_brokers = ["binance" ,"btcturk"]
+
 
 # Ask for user input for the pair and broker
 print("Choose a pair from the following list -select number-: ")
@@ -55,7 +55,7 @@ brokers = [avalable_brokers[int(broker)-1] for broker in brokers]
 
 switcher = {
     "binance": BinanceWebsocket,
-    "btcturk": WebSocketManager
+    "btcturk": btcturkWebsocket.WebSocketManager('wss://ws-feed-pro.btcturk.com/')
 }
 
 # Create an instance of the class for each selected broker

@@ -81,8 +81,8 @@ class BinanceWebsocket:
         data=[{'ask':last_five_asks,'bids':last_five_bids ,'name':'binance','time':current_time}]
         Composition.dataGetter(data)
         
-        print("Last five buy orders", last_five_bids)
-        print("Last five sell orders", last_five_asks)
+        # print("Last five buy orders", last_five_bids)
+        # print("Last five sell orders", last_five_asks)
 
     def on_error(self, ws, error):
         print("Error:", error)

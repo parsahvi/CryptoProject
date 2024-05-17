@@ -5,3 +5,4 @@ def dataGetter(value):
             data[i]['ask']=value[-1]['ask']
             data[i]['bids']=value[-1]['bids']
     print(data)
+    print('\n \n \n')

@@ -5,6 +5,7 @@ import Composition
 from datetime import datetime
 class BinanceWebsocket:
     def __init__(self , pair):
+        self.pair=pair
         self.ws = websocket.WebSocketApp("wss://stream.binance.com:9443/ws/{}@depth".format(pair),  
                                          on_message=self.on_message,
                                          on_error=self.on_error,
@@ -26,11 +27,8 @@ class BinanceWebsocket:
         
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
-        data=[{'ask':last_five_asks,'bids':last_five_bids ,'name':'binance','time':current_time}]
-        print(data)
-        
-        # print("Last five buy orders", last_five_bids)
-        # print("Last five sell orders", last_five_asks)
+        data=[{'ask':last_five_asks,'bids':last_five_bids ,'name':'binance','time':current_time,"pair":self.pair}]
+        print(json.dumps(data, indent=4))
 
     def on_error(self, ws, error):
         print("Error:", error)

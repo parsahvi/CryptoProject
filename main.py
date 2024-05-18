@@ -4,18 +4,12 @@ import btcturkWebsocket
 
 import threading
 
-def call_binance(pair):
-    newPair = pair.lower()
-    BinanceWebsocket(newPair)
-
-def call_btcturk(pair):
-    btcturkWebsocket.WebSocketManager(pair)
-    
 def process_broker(broker,pair):
     if broker == "binance":
-        call_binance(pair)
+        newPair = pair.lower()
+        BinanceWebsocket(newPair)
     elif broker == "btcturk":
-        call_btcturk(pair)
+        btcturkWebsocket.WebSocketManager(pair)
 
 
 def main():
